@@ -1,0 +1,25 @@
+<div class="container-tabela">
+    <mat-form-field appearance="outline" class="campo-filtro">
+      <mat-label>Filtrar</mat-label>
+      <input matInput (keyup)="aplicarFiltro($any($event.target).value)" placeholder="Ex: Código ou Descrição">
+    </mat-form-field>
+   <!-- Coluninha de Cód -->
+    <table mat-table [dataSource]="fonteDeDados" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+        <td mat-cell *matCellDef="let elemento"> {{elemento.codigo}} </td>
+      </ng-container>
+  
+      <!-- Coluninha de descricão -->
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </th>
+        <td mat-cell *matCellDef="let elemento"> {{elemento.descricao}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="colunasExibidas"></tr>
+      <tr mat-row *matRowDef="let linha; columns: colunasExibidas;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  
